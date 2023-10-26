@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct ShopSmartApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject var viewModel = AuthViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentViewMain()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(viewModel)
         }
     }
 }
